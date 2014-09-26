@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('resturantPosApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, orders) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
