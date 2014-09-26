@@ -3,10 +3,12 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var TableSchema = new Schema({
+var OrderSchema = new Schema({
   hash: Schema.Integer,
-  bills: [{ type:Schema.ObjectId , ref:'Bill'}],
-  active: {type:String, enum:['idle','active','reserved','inactive']}
+  type: [{ type:Schema.ObjectId , ref:'Choice'}],
+  addons: [String],
+  sides: [String],
+  status: {type:String, enum:['placed','queued','active','prepared','served']}
 });
 
-module.exports = mongoose.model('Table', TableSchema);
+module.exports = mongoose.model('Order', OrderSchema);

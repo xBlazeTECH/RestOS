@@ -1,62 +1,62 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /order              ->  index
- * POST    /order              ->  create
- * GET     /order/:id          ->  show
- * PUT     /order/:id          ->  update
- * DELETE  /order/:id          ->  destroy
+ * GET     /bill              ->  index
+ * POST    /bill              ->  create
+ * GET     /bill/:id          ->  show
+ * PUT     /bill/:id          ->  update
+ * DELETE  /bill/:id          ->  destroy
  */
 
 'use strict';
 
 var _ = require('lodash');
-var Order = require('./order.model');
+var Bill = require('./bill.model');
 
-// Get list of things
+// Get list of bills
 exports.index = function(req, res) {
-  Order.find(function (err, things) {
+  Bill.find(function (err, bill) {
     if(err) { return handleError(res, err); }
-    return res.json(200, things);
+    return res.json(200, bill);
   });
 };
 
 // Get a single thing
 exports.show = function(req, res) {
-  Order.findById(req.params.id, function (err, order) {
+  Bill.findById(req.params.id, function (err, bill) {
     if(err) { return handleError(res, err); }
-    if(!order) { return res.send(404); }
-    return res.json(order);
+    if(!bill) { return res.send(404); }
+    return res.json(bill);
   });
 };
 
 // Creates a new thing in the DB.
 exports.create = function(req, res) {
-  Order.create(req.body, function(err, order) {
+  Bill.create(req.body, function(err, bill) {
     if(err) { return handleError(res, err); }
-    return res.json(201, order);
+    return res.json(201, bill);
   });
 };
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Order.findById(req.params.id, function (err, order) {
+  Bill.findById(req.params.id, function (err, bill) {
     if (err) { return handleError(res, err); }
-    if(!order) { return res.send(404); }
-    var updated = _.merge(order, req.body);
+    if(!bill) { return res.send(404); }
+    var updated = _.merge(Bill, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, order);
+      return res.json(200, Bill);
     });
   });
 };
 
 // Deletes a thing from the DB.
 exports.destroy = function(req, res) {
-  Order.findById(req.params.id, function (err, order) {
+  Bill.findById(req.params.id, function (err, bill) {
     if(err) { return handleError(res, err); }
-    if(!order) { return res.send(404); }
-    order.remove(function(err) {
+    if(!bill) { return res.send(404); }
+    bill.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);
     });

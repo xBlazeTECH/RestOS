@@ -4,21 +4,21 @@
 
 'use strict';
 
-var order = require('./order.model');
+var table = require('./table.model');
 
 exports.register = function(socket) {
-  order.schema.post('save', function (doc) {
+  table.schema.post('save', function (doc) {
     onSave(socket, doc);
   });
-  order.schema.post('remove', function (doc) {
+  table.schema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('order:save', doc);
+  socket.emit('table:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('order:remove', doc);
+  socket.emit('table:remove', doc);
 }
