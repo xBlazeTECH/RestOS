@@ -1,34 +1,53 @@
-<div ng-controller="WaitstaffCtrl">
-    <form>
-    <label>Name</label>
-        <input type="text" name="name" ng-model="newcontact.name"/>
-    <label>Email</label>
-        <input type="text" name="email" ng-model="newcontact.email"/>
-    <label>Phone</label>
-        <input type="text" name="phone" ng-model="newcontact.phone"/>
-        <br/>
-        <input type="hidden" ng-model="newcontact.id" />
-     <input type="button" value="Save" ng-click="saveContact()" />
-    </form>
-<table>
-<thead>
-<tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr ng-repeat="contact in contacts">
-    <td>{{ contact.name }}</td>
-    <td>{{ contact.email }}</td>
-    <td>{{ contact.phone }}</td>
-    <td>
-        <a href="" ng-click="edit(contact.id)">edit</a> |
-        <a href="" ng-click="delete(contact.id)">delete</a>
-    </td>
- </tr>
-</tbody>
-</table>   
+<div ng-init="menu = [{desc:'Burger', ismeat:true, sides:['Ketchup','Mustard']},
+                         {desc:'Mary', ismeat:false, sides:['Ketchup','Mustard']},
+                         {desc:'Mike', ismeat:false, sides:['Ketchup','Mustard']},
+                         {desc:'Adam', ismeat:false, sides:['Ketchup','Mustard']},
+                         {desc:'Julie', ismeat:false, sides:['Ketchup','Mustard']},
+                         {desc:'Juliette', ismeat:false, sides:['Ketchup','Mustard']}]"></div>
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Waitstaff Dashboard</h1>
+    <p class="lead">Welcome to the waitstaff dashboard. From here you will manage orders.</p>
+  </div>
+</header>
+
+<div class="container">
+  <form class="thing-form">
+    <label>Please start typing to find a meal to add to the order above.</label>
+      <input ng-disabled="orderChosen" type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing"><br>
+	  <div style="width:100%;" class="panel panel-default noselect" ng-class="isHidden ? 'panel-default' : 'panel-primary'" ng-repeat="item in menu | filter:newThing">
+	    <div ng-click="isHidden = getInverse(isHidden);"  class="panel-heading">
+	      <h3>{{item.desc}}</h3>
+		</div>
+        <div class="panel-body ng-binding" ng-hide="isHidden">
+		  <div class="well" style="margin-bottom:5px;" ng-class="isActive ? 'well-success' : 'well-default'" ng-repeat="side in item.sides" ng-click="isActive = !isActive;">
+		  <span class="glyphicon" ng-class="isActive ? 'glyphicon-ok-sign' : 'glyphicon-plus-sign'"></span> {{side}}
+		  </div>
+        </div>
+		<div class="panel-footer ng-binding" ng-hide="isHidden">
+			<div class="input-group">
+				<span class="input-group-addon">Comments: </span>
+				<input type="text" class="form-control">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Add To Order ></button>
+				</span>
+			</div><!-- /input-group -->
+		</div>
+	  </div>
+	  <input type="text" class="form-control" placeholder="Add your sides here." ng-model="newThing">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add It ></button>
+      </span>
+  </form>
 </div>
+
+<footer class="footer">
+  <div class="container">
+      <p>Angular Fullstack v2.0.13 |
+        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
+         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+  </div>
+</footer>

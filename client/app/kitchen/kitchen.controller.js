@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('resturantPosApp')
-  .controller('KitchenCtrl', function ($scope, $http, socket, orders) {
+  .controller('KitchenCtrl', function ($scope, $http, socket) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
-
+    
     $scope.addThing = function() {
       if($scope.newThing === '') {
         return;

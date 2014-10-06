@@ -1,10 +1,10 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /table              ->  index
- * POST    /table              ->  create
- * GET     /table/:id          ->  show
- * PUT     /table/:id          ->  update
- * DELETE  /table/:id          ->  destroy
+ * GET     /tables              ->  index
+ * POST    /tables              ->  create
+ * GET     /tables/:id          ->  show
+ * PUT     /tables/:id          ->  update
+ * DELETE  /tables/:id          ->  destroy
  */
 
 'use strict';
@@ -24,7 +24,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   Table.findById(req.params.id, function (err, table) {
     if(err) { return handleError(res, err); }
-    if(!table) { return res.send(404); }
+    //if(!table) { return res.send(404); }
     return res.json(table);
   });
 };
@@ -42,7 +42,7 @@ exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Table.findById(req.params.id, function (err, table) {
     if (err) { return handleError(res, err); }
-    if(!table) { return res.send(404); }
+//    if(!table) { return res.send(404); }
     var updated = _.merge(table, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }

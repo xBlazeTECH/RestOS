@@ -15,7 +15,7 @@ describe('Controller: KitchenCtrl', function () {
     $httpBackend = _$httpBackend_;
     $httpBackend.expectGET('/api/things')
       .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
-      
+
     scope = $rootScope.$new();
     KitchenCtrl = $controller('KitchenCtrl', {
       $scope: scope
