@@ -9,12 +9,13 @@
 
 <div class="container">
   <div id="canvas" class="unselectable" style="position:relative;height:500px;background-color:green;text-align:center;">
-    <div class="panel panel-default" ng-style="myStyle(table)" ng-repeat="table in tableList" tooltip="Status: {{table.status}}" >
-      <div class="panel-heading">
-        <!--<h3></h3>-->
+    <div class="panel" ng-class="getTableClass(table);" ng-style="myStyle(table)" ng-repeat="table in tableList">
+      <div class="panel-heading" style="padding: 10px;line-height:1;" tooltip="{{getTableStatus(table)}}">
+        {{getTableStatusShort(table)}}
       </div>
-      <div class="panel-body">
-        {{table.desc}}
+      <div class="panel-body" style="font-size:75%">
+        <p style="font-weight:bold;line-height:0.5;">Table {{table.num.toString()}}</p>
+		<p> Seats: {{table.seats.toString()}}</p>
       </div>
     </div>
   </div>

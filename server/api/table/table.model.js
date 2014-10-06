@@ -4,15 +4,14 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var TableSchema = new Schema({
-  desc: String,
-  x: String,
-  y: String,
+  num: [Schema.Integer],
+  x: [Schema.Integer],
+  y: [Schema.Integer],
   unit_height: [Schema.Integer],
   unit_width: [Schema.Integer],
-  height: String,
-  width: String,
+  seats: [Schema.Integer],
   bills: [{ type:Schema.ObjectId , ref:'Bill'}],
-  status: {type:String, enum:['idle','active','reserved','inactive']}
+  status: {type:String, enum:['available','occupied','uncleaned','reserved','disabled']}
 });
 
 module.exports = mongoose.model('Table', TableSchema);

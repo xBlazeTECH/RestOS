@@ -36,34 +36,37 @@ Thing.find({}).remove(function() {
 
 Table.find({}).remove(function() {
   Table.create ({
-    desc : 'Table 1',
-    x : '10px',
-    y : '10px',
+    num : 1,
+    x : 0,
+    y : 0,
     unit_height : 1,
     unit_width : 1,
-    seats : '4',
-    status : 'idle'
+    seats : 2,
+    status : 'available'
   }, {
-    desc : 'Table 2',
-    x : '20px',
-    y : '20px',
-    unit_height : 2,
+    num : 2,
+    x : 120,
+    y : 0,
+    unit_height : 1,
     unit_width : 1,
-    status : 'active'
+    seats : 2,
+    status : 'occupied'
   }, {
-    desc : 'Table 3',
-    x : '30px',
-    y : '30px',
+    num : 3,
+    x : 240,
+    y : 0,
     unit_height : 1,
     unit_width : 2,
+    seats : 4,
     status : 'reserved'
   }, {
-    desc : 'Table 4',
-    x : '40px',
-    y : '40px',
+    num : 4,
+    x : 0,
+    y : 120,
     unit_height : 1,
-    unit_width : 3,
-    status : 'inactive'
+    unit_width : 1,
+    seats : 4,
+    status : 'disabled'
   });
 });
 
