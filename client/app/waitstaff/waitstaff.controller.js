@@ -13,6 +13,22 @@ angular.module('resturantPosApp')
         return true;
       }
     };
+    
+    /*
+    $scope.sideActivity = function(param) {
+    //var argarray = Array.prototype.slice.call(arguments,0) }
+    if (typeof param === "boolean") { //Check to see if I am sending a boolean parameter rather than a side parameter.
+      if (typeof
+    } else {
+      if (typeof param.default === "boolean") {
+        if (side.default) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    */
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;

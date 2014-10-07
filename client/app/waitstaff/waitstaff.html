@@ -1,4 +1,4 @@
-<div ng-init="menu = [{desc:'Burger', ismeat:true, sides:['Ketchup','Mustard']},
+<div ng-init="menu = [{desc:'Burger', sides:[{'name':'Bun','state':true},{'name':'Lettuce','state':false}]},
                          {desc:'Mary', ismeat:false, sides:['Ketchup','Mustard']},
                          {desc:'Mike', ismeat:false, sides:['Ketchup','Mustard']},
                          {desc:'Adam', ismeat:false, sides:['Ketchup','Mustard']},
@@ -23,8 +23,8 @@
 	      <h3>{{item.desc}}</h3>
 		</div>
         <div class="panel-body ng-binding" ng-hide="isHidden">
-		  <div class="well" style="margin-bottom:5px;" ng-class="isActive ? 'well-success' : 'well-default'" ng-repeat="side in item.sides" ng-click="isActive = !isActive;">
-		  <span class="glyphicon" ng-class="isActive ? 'glyphicon-ok-sign' : 'glyphicon-plus-sign'"></span> {{side}}
+		  <div class="well" style="margin-bottom:5px;" ng-class="side.state || side.default ? 'well-success' : 'well-default'" ng-repeat="side in item.sides" ng-click="side.state = !side.state;">
+		  <span class="glyphicon" ng-class="side.state ? 'glyphicon-ok-sign' : 'glyphicon-plus-sign'"></span> {{side.name}}
 		  </div>
         </div>
 		<div class="panel-footer ng-binding" ng-hide="isHidden">
