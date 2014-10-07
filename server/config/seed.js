@@ -71,27 +71,49 @@ Table.find({}).remove(function() {
 });
 
 Meal.find({}).remove(function() {
-  Meal.create ({
-    desc : 'Hamburger',
-    isMeat : true,
-    addons : ['Ketchup','Mustard','Relish'],
-    sides : ['French Fries','Salad','Tornado'],
-    status : 'active'
-  }, {
-    desc : 'Philly Cheese',
-    addons : ['Onions','Peppers','Mushrooms'],
-    status : 'active'
-  }, {
-    desc : 'Cheeseburger',
-    addons : ['Ketchup','Mustard','Relish'],
-    sides : ['French Fries','Salad','Tornado'],
-    status : 'active'
-  }, {
-    desc : 'Cheeseburger',
-    addons : ['Ketchup','Mustard','Relish'],
-    sides : ['French Fries','Salad','Tornado'],
-    status : 'active'
-  });
+  Meal.create ( {
+                  desc : 'Hamburger',
+                  meat : true,
+                  parts : [{
+                    'name' : 'Bun',
+                    'state' : true
+                  },
+                  {
+                    'name' : 'Cheese',
+                    'state' : false
+                  },
+                  {
+                    'name' : 'Lettuce',
+                    'state' : false
+                  },
+                  {
+                    'name' : 'Tomatoes',
+                    'state' : false
+                  },
+                  {
+                    'name' : 'Onions',
+                    'state' : false
+                  },
+                  {
+                    'name' : 'Pickles',
+                    'state' : false
+                  },
+                  {
+                    'name' : 'Mayonaise',
+                    'state' : false
+                  }
+                  ],
+                  status : 'active'
+                },
+                {
+                  desc : 'Chicken Wrap',
+                  meat : false,
+                  parts : [{
+                    'name' : 'Cheese',
+                    'state' : false
+                  }]
+                }
+              );
 });
 
 User.find({}).remove(function() {

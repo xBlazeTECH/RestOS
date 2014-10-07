@@ -1,9 +1,9 @@
-<div ng-init="menu = [{desc:'Burger', sides:[{'name':'Bun','state':true},{'name':'Lettuce','state':false}]},
+<!--<div ng-init="menu = [{desc:'Burger', sides:[{'name':'Bun','state':true},{'name':'Lettuce','state':false}]},
                          {desc:'Mary', ismeat:false, sides:['Ketchup','Mustard']},
                          {desc:'Mike', ismeat:false, sides:['Ketchup','Mustard']},
                          {desc:'Adam', ismeat:false, sides:['Ketchup','Mustard']},
                          {desc:'Julie', ismeat:false, sides:['Ketchup','Mustard']},
-                         {desc:'Juliette', ismeat:false, sides:['Ketchup','Mustard']}]"></div>
+                         {desc:'Juliette', ismeat:false, sides:['Ketchup','Mustard']}]"></div>-->
 
 <div ng-include="'components/navbar/navbar.html'"></div>
 
@@ -23,8 +23,16 @@
 	      <h3>{{item.desc}}</h3>
 		</div>
         <div class="panel-body ng-binding" ng-hide="isHidden">
-		  <div class="well" style="margin-bottom:5px;" ng-class="side.state || side.default ? 'well-success' : 'well-default'" ng-repeat="side in item.sides" ng-click="side.state = !side.state;">
-		  <span class="glyphicon" ng-class="side.state ? 'glyphicon-ok-sign' : 'glyphicon-plus-sign'"></span> {{side.name}}
+		  <div ng-if="item.meat">How should the meat be cooked: <p class="btn-group">
+			<label class="btn btn-lg btn-danger" ng-model="radioModel" btn-radio="'Very-Rare'">Very Rare</label>
+			<label class="btn btn-lg btn-warning" ng-model="radioModel" btn-radio="'Medium-Rare'">Medium Rare</label>
+			<label class="btn btn-lg btn-default" ng-model="radioModel" btn-radio="'Medium'">Medium</label>
+			<label class="btn btn-lg btn-info" ng-model="radioModel" btn-radio="'Medium-Well'">Medium Well</label>
+			<label class="btn btn-lg btn-primary" ng-model="radioModel" btn-radio="'Very-Well'">Very Well</label>
+			</p>
+		  </div>
+		  <div class="well" style="margin-bottom:5px;" ng-class="part.state || part.default ? 'well-success' : 'well-default'" ng-repeat="part in item.parts" ng-click="part.state = !part.state;">
+		  <span class="glyphicon" ng-class="part.state ? 'glyphicon-ok-sign' : 'glyphicon-plus-sign'"></span> {{part.name}}
 		  </div>
         </div>
 		<div class="panel-footer ng-binding" ng-hide="isHidden">

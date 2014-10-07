@@ -2,9 +2,10 @@
 
 angular.module('resturantPosApp')
   .controller('WaitstaffCtrl', function ($scope, $http, socket) {
-    $scope.awesomeThings = [];
+    $scope.menu = {};
     $scope.isHidden = true;
     $scope.orderChosen = false;
+    $scope.radioModel = '';
     
     $scope.getInverse = function(thing) {
       if (thing == true) {
@@ -30,9 +31,9 @@ angular.module('resturantPosApp')
     }
     */
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
+    $http.get('/api/meals').success(function(meals) {
+      $scope.menu = meals;
+      socket.syncUpdates('menu', $scope.menu);
     });
     
     $scope.addThing = function() {

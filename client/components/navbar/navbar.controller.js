@@ -6,16 +6,16 @@ angular.module('resturantPosApp')
       'title': 'Home',
       'link': '/'
     },{
-	  'title': 'Greeter',
-	  'link': '/greeter'
-	},{
-	  'title': 'Waitstaff',
-	  'link': '/waitstaff'
-	},{
-	  'title': 'Kitchen',
-	  'link': '/kitchen'
-	}
-	];
+	    'title': 'Greeter',
+	    'link': '/greeter'
+	  },{
+	    'title': 'Waitstaff',
+	    'link': '/waitstaff'
+	  },{
+	    'title': 'Kitchen',
+	    'link': '/kitchen'
+	  }
+	  ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
