@@ -4,8 +4,17 @@ angular.module('resturantPosApp')
   .controller('WaitstaffCtrl', function ($scope, $http, socket) {
     $scope.menu = {};
     $scope.isHidden = true;
-    $scope.orderChosen = false;
+    $scope.meal = '';
+    $scope.options = [];
     $scope.radioModel = '';
+    
+    
+    /*
+    $scope.addChoice = function (thing) {
+      $scope.choices.push(thing);
+      socket.syncUpdates('choices', $scope.choices);
+    };
+    */
     
     $scope.getInverse = function(thing) {
       if (thing == true) {

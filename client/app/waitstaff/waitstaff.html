@@ -15,40 +15,47 @@
 </header>
 
 <div class="container">
-  <form class="thing-form">
-    <label>Please start typing to find a meal to add to the order above.</label>
-      <input ng-disabled="orderChosen" type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing"><br>
-	  <div style="width:100%;" class="panel panel-default noselect" ng-class="isHidden ? 'panel-default' : 'panel-primary'" ng-repeat="item in menu | filter:newThing">
-	    <div ng-click="isHidden = getInverse(isHidden);"  class="panel-heading">
-	      <h3>{{item.desc}}</h3>
-		</div>
-        <div class="panel-body ng-binding" ng-hide="isHidden">
-		  <div ng-if="item.meat">How should the meat be cooked: <p class="btn-group">
-			<label class="btn btn-lg btn-danger" ng-model="radioModel" btn-radio="'Very-Rare'">Very Rare</label>
-			<label class="btn btn-lg btn-warning" ng-model="radioModel" btn-radio="'Medium-Rare'">Medium Rare</label>
-			<label class="btn btn-lg btn-default" ng-model="radioModel" btn-radio="'Medium'">Medium</label>
-			<label class="btn btn-lg btn-info" ng-model="radioModel" btn-radio="'Medium-Well'">Medium Well</label>
-			<label class="btn btn-lg btn-primary" ng-model="radioModel" btn-radio="'Very-Well'">Very Well</label>
-			</p>
-		  </div>
-		  <div class="well" style="margin-bottom:5px;" ng-class="part.state || part.default ? 'well-success' : 'well-default'" ng-repeat="part in item.parts" ng-click="part.state = !part.state;">
-		  <span class="glyphicon" ng-class="part.state ? 'glyphicon-ok-sign' : 'glyphicon-plus-sign'"></span> {{part.name}}
-		  </div>
+  <form>
+  <span>Options: </span>
+  <label>Please type into the box to add an item to the order.</label>
+  <input type="text" class="form-control" placeholder="Just start typing!" ng-model="searchBox"><br>
+  <div style="width:100%;" class="panel panel-default noselect" ng-class="selected ? 'panel-primary' : 'panel-default'" ng-repeat="item in menu | filter:{desc: searchBox} | orderBy:'desc':false">
+    <div class="panel-heading" ng-click="selected = !selected;">
+	  <h3><strong>{{item.category}}</strong>: {{item.desc}}</h3>
+	  </div>
+	  <div class="panel-body" ng-show="selected">
+      <!-- Meal Options -->
+      <h2 ng-if="item.mealoptions">Meal Options:</h2>
+      <div ng-repeat="opt in item.mealoptions">
+        <h3>{{opt.desc}}: </h3>
+        <ul class="nav nav-pills">
+          <span ng-init=""></span>
+          <li ng-repeat="choice in opt.choices" ng-class="active ? 'active' : ''" ng-click="active = !active"><a>
+            {{choice}}
+          </a></li>
+        </ul>
+      </div>
+      <br/ >
+      <!-- Addon Selection -->
+      <h2 ng-if="item.mealaddons">Meal Components: </h2>
+      <div ng-repeat="opt in item.mealaddons">
+        <div class="btn-group">
+          <button type="button" class="btn btn-lg" ng-class="opt.state ? 'btn-danger' : 'btn-success'" ng-click="opt.state = !opt.state;">
+            <span ng-show="opt.state"><i class="glyphicon glyphicon-minus">&nbsp;</i>Remove</span><span ng-hide="opt.state"><i class="glyphicon glyphicon-plus">&nbsp;</i>Add</span>&nbsp;<span>'{{opt.desc}}'</span>
+          </button>
         </div>
-		<div class="panel-footer ng-binding" ng-hide="isHidden">
+      </div>
+  	</div>
+    <div class="panel-footer" ng-show="selected">
 			<div class="input-group">
-				<span class="input-group-addon">Comments: </span>
+				<span class="input-group-addon">Additional Instructions: </span>
 				<input type="text" class="form-control">
 				<span class="input-group-btn">
 					<button class="btn btn-default" type="button">Add To Order ></button>
 				</span>
-			</div><!-- /input-group -->
-		</div>
-	  </div>
-	  <input type="text" class="form-control" placeholder="Add your sides here." ng-model="newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add It ></button>
-      </span>
+			</div>
+    </div>
+  </div>
   </form>
 </div>
 

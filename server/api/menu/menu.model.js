@@ -13,7 +13,7 @@ var AddonSchema = new Schema({
   state: Boolean
 });
 
-var MealSchema = new Schema({
+var MenuSchema = new Schema({
   desc: String,
   category: String,
   mealoptions: [OptionSchema],
@@ -21,4 +21,4 @@ var MealSchema = new Schema({
   status: {type:String, enum:['active','inactive']}
 });
 
-module.exports = mongoose.model('Meal', MealSchema);
+module.exports = mongoose.model('Menu', MenuSchema);

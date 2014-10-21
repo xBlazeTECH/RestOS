@@ -11,6 +11,8 @@ var Table = require('../api/table/table.model');
 var Bill = require('../api/bill/bill.model');
 var Order = require('../api/order/order.model');
 var Meal = require('../api/meal/meal.model');
+var Menu = require('../api/menu/menu.model');
+
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -71,49 +73,226 @@ Table.find({}).remove(function() {
 });
 
 Meal.find({}).remove(function() {
-  Meal.create ( {
-                  desc : 'Hamburger',
-                  meat : true,
-                  parts : [{
-                    'name' : 'Bun',
-                    'state' : true
-                  },
-                  {
-                    'name' : 'Cheese',
-                    'state' : false
-                  },
-                  {
-                    'name' : 'Lettuce',
-                    'state' : false
-                  },
-                  {
-                    'name' : 'Tomatoes',
-                    'state' : false
-                  },
-                  {
-                    'name' : 'Onions',
-                    'state' : false
-                  },
-                  {
-                    'name' : 'Pickles',
-                    'state' : false
-                  },
-                  {
-                    'name' : 'Mayonaise',
-                    'state' : false
-                  }
-                  ],
-                  status : 'active'
-                },
-                {
-                  desc : 'Chicken Wrap',
-                  meat : false,
-                  parts : [{
-                    'name' : 'Cheese',
-                    'state' : false
-                  }]
-                }
-              );
+  Meal.create ( 
+    {
+      desc : 'New England Clam Chowder',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [
+        {
+          desc: 'Size',
+          choices: ['Small Bowl','Large Bowl']
+        }
+      ],
+      mealaddons: []
+    },{
+      desc : 'Soup of the Day',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [
+        {
+          desc: 'Size',
+          choices: ['Small Bowl','Large Bowl']
+        }
+      ],
+      mealaddons: []
+    },{
+      desc : 'Seared Ahi Tuna',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: []
+    },{
+      desc : 'Softies',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: [
+        {
+          desc: 'Honey Dijon Mustard',
+          state: true
+        }
+      ]
+    },{
+      desc : 'Engine #11 Firehouse Wings',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [
+        {
+          desc: 'Size',
+          choices: ['Half Order','Full Order']
+        }
+      ],
+      mealaddons: []
+    },{
+      desc : 'Maine Crab Dip',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: []
+    },{
+      desc : 'Creamed Spinach & Artichoke Dip',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: []
+    },{
+      desc : 'Fried Mooz',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: [
+        {
+          desc: 'Whole Milk Mozzarella',
+          state: true
+        },
+        {
+          desc: 'Marinara Sauce',
+          state: true
+        }
+      ]
+    },{
+      desc : 'Calamari',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: [
+        {
+          desc: 'Chipotle Aioli',
+          state: true
+        }
+      ]
+    },{
+      desc : 'Tap Room Fries',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: [
+        {
+          desc: 'Sugar Maple Icing',
+          state: true
+        },
+        {
+          desc: 'Honey Dijon Dipping Sauce',
+          state: true
+        }
+      ]
+    },{
+      desc : 'Hummus Plate',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: [
+        {
+          desc: 'Crisp Carrots',
+          state: true
+        },
+        {
+          desc: 'Celery',
+          state: true
+        },
+        {
+          desc: 'Kalamata Olives',
+          state: true
+        },
+        {
+          desc: 'Fresh Tomatoes',
+          state: true
+        },
+        {
+          desc: 'Red Onions',
+          state: true
+        }
+      ]
+    },{
+      desc : 'Monster Nachos',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [
+        {
+          desc: 'Size',
+          choices: ['Half Order','Full Order']
+        },
+        {
+          desc: 'Meat',
+          choices: ['Chicken', 'Beef']
+        }
+      ],
+      mealaddons: [
+        {
+          desc: 'Cheese',
+          state: true
+        },
+        {
+          desc: 'Sour Cream',
+          state: true
+        },
+        {
+          desc: 'Diced Tomatoes',
+          state: true
+        },
+        {
+          desc: 'Jalapenos',
+          state: true
+        },
+        {
+          desc: 'Black Beans',
+          state: true
+        },
+        {
+          desc: 'Shredded Lettuce',
+          state: true
+        },
+        {
+          desc: 'Salsa',
+          state: true
+        }
+      ]
+    },{
+      desc : 'Chicken Tenders',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [],
+      mealaddons: [
+        {
+          desc: 'Bun',
+          state: true
+        },
+        {
+          desc: 'Lettuce',
+          state: false
+        },
+        {
+          desc: 'Tomatoes',
+          state: false
+        }
+      ]
+    },{
+      desc : 'Chicken Quesadilla',
+      category : 'This-N-That',
+      status : 'active',
+      mealoptions: [
+        {
+          desc: 'Size',
+          choices: ['Small Bowl','Large Bowl']
+        }
+      ],
+      mealaddons: [
+        {
+          desc: 'Bun',
+          state: true
+        },
+        {
+          desc: 'Lettuce',
+          state: false
+        },
+        {
+          desc: 'Tomatoes',
+          state: false
+        }
+      ]
+    }
+  );
 });
 
 User.find({}).remove(function() {

@@ -23,6 +23,8 @@ function onConnect(socket) {
   require('../api/order/order.socket').register(socket);
   require('../api/table/table.socket').register(socket);
   require('../api/meal/meal.socket').register(socket);
+  require('../api/menu/menu.socket').register(socket);
+
 
 }
 
