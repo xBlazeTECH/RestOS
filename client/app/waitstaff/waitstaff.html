@@ -1,62 +1,24 @@
-<!--<div ng-init="menu = [{desc:'Burger', sides:[{'name':'Bun','state':true},{'name':'Lettuce','state':false}]},
-                         {desc:'Mary', ismeat:false, sides:['Ketchup','Mustard']},
-                         {desc:'Mike', ismeat:false, sides:['Ketchup','Mustard']},
-                         {desc:'Adam', ismeat:false, sides:['Ketchup','Mustard']},
-                         {desc:'Julie', ismeat:false, sides:['Ketchup','Mustard']},
-                         {desc:'Juliette', ismeat:false, sides:['Ketchup','Mustard']}]"></div>-->
-
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>Waitstaff Dashboard</h1>
-    <p class="lead">Welcome to the waitstaff dashboard. From here you will manage orders.</p>
+    <h1>Greeter Dashboard</h1>
+    <p class="lead">This page will allow you to seat patrons at tables and make reservations.</p>
   </div>
 </header>
 
 <div class="container">
-  <form>
-  <span>Options: </span>
-  <label>Please type into the box to add an item to the order.</label>
-  <input type="text" class="form-control" placeholder="Just start typing!" ng-model="searchBox"><br>
-  <div style="width:100%;" class="panel panel-default noselect" ng-class="selected ? 'panel-primary' : 'panel-default'" ng-repeat="item in menu | filter:{desc: searchBox} | orderBy:'desc':false">
-    <div class="panel-heading" ng-click="selected = !selected;">
-	  <h3><strong>{{item.category}}</strong>: {{item.desc}}</h3>
-	  </div>
-	  <div class="panel-body" ng-show="selected">
-      <!-- Meal Options -->
-      <h2 ng-if="item.mealoptions">Meal Options:</h2>
-      <div ng-repeat="opt in item.mealoptions">
-        <h3>{{opt.desc}}: </h3>
-        <ul class="nav nav-pills">
-          <span ng-init=""></span>
-          <li ng-repeat="choice in opt.choices" ng-class="active ? 'active' : ''" ng-click="active = !active"><a>
-            {{choice}}
-          </a></li>
-        </ul>
+  <div id="canvas" class="unselectable" style="position:relative;height:500px;background-color:green;">
+    <div class="panel" ng-class="getTableClass(table);" ng-style="myStyle(table)" ng-repeat="table in tableList">
+      <div class="panel-heading" style="padding: 5px;line-height:1em;" tooltip="{{getTableStatusShort(table)}}">
+        <span>{{getTableStatusShort(table)}}<span><i class="pull-right glyphicon glyphicon-edit" ng-click="go('/waitstaff/add')"></i>
       </div>
-      <br/ >
-      <!-- Addon Selection -->
-      <h2 ng-if="item.mealaddons">Meal Components: </h2>
-      <div ng-repeat="opt in item.mealaddons">
-        <div class="btn-group">
-          <button type="button" class="btn btn-lg" ng-class="opt.state ? 'btn-danger' : 'btn-success'" ng-click="opt.state = !opt.state;">
-            <span ng-show="opt.state"><i class="glyphicon glyphicon-minus">&nbsp;</i>Remove</span><span ng-hide="opt.state"><i class="glyphicon glyphicon-plus">&nbsp;</i>Add</span>&nbsp;<span>'{{opt.desc}}'</span>
-          </button>
-        </div>
+      <div class="panel-body" style="font-size:75%;text-align:center;">
+        <p style="font-weight:bold;line-height:0.5;">Table {{table.num.toString()}}</p>
+		    <p>Seats: {{table.seats.toString()}}</p>
       </div>
-  	</div>
-    <div class="panel-footer" ng-show="selected">
-			<div class="input-group">
-				<span class="input-group-addon">Additional Instructions: </span>
-				<input type="text" class="form-control">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">Add To Order ></button>
-				</span>
-			</div>
     </div>
   </div>
-  </form>
 </div>
 
 <footer class="footer">
